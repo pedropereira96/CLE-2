@@ -167,14 +167,13 @@ void dispatcher(char *files[], int nFiles, int size)
             {
 
                 unsigned int last_separator = 0;
-                long backward_bytes = 0;
+                long to_back = 0;
                 unsigned int buffer[CHUNK_SIZE];
 
 
                 for (unsigned int i = 0; i < CHUNK_SIZE; i++)   // will create the buffer/chunker with 52
                 {
-
-                    c = read_u8char(file);
+                    c = read_char(file);
                     if (isSeparator(c))
                         last_separator = i;
                     else if (c == 0)
@@ -187,12 +186,12 @@ void dispatcher(char *files[], int nFiles, int size)
                 {
                     if (buffer[i] != 0)
                     {
-                        backward_bytes += get_needed_bytes(buffer[i]);
+                        to_back += get_bytes(buffer[i]);
                         buffer[i] = 0;
                     }
                 }
 
-                fseek(file, -backward_bytes, SEEK_CUR);                 // to go back on file
+                fseek(file, -to_back, SEEK_CUR);                 // to go back on file
      
                 MPI_Send(&moreWork, 1, MPI_C_BOOL, workId, 0, MPI_COMM_WORLD); // Send value to identify if will continue or not
 

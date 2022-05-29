@@ -8,6 +8,6 @@ int isSeparator(unsigned int c);
 
 int isNumber(unsigned int c);
 
-int read_u8char(FILE *file);
+int read_char(FILE *file);
 
-long get_needed_bytes(unsigned int n);
+long get_bytes(unsigned int n);

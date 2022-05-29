@@ -70,7 +70,7 @@ int isNumber(unsigned int c)
  * @param file 
  * @return int 
  */
-int read_u8char(FILE *file)
+int read_char(FILE *file)
 {
   unsigned char buffer[4] = {0, 0, 0, 0};
   unsigned int c = 0;
@@ -107,7 +107,7 @@ int read_u8char(FILE *file)
  * @param n 
  * @return long 
  */
-long get_needed_bytes(unsigned int n)
+long get_bytes(unsigned int n)
 {
   if (n < 256)
     return 1;
